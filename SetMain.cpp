@@ -1,11 +1,11 @@
-/*
 #include "SetTest.h"
 #include "Set.h"
 #include "Mem.h"
 
 #include <ctime>
 
-int main() {
+int main()
+{
     Mem mm(0);
     Set set(mm);
 
@@ -17,28 +17,26 @@ int main() {
 
     cout << "Test for insert() and find():" << endl;
 
-    if (!set_test.insert_find_test(5)) {
+    if (!set_test.insert_find_test(2'000'000))
         cout << "Test passed!" << endl;
-
-    } else {
+    else
+    {
         cout << "Something's wrong!" << endl
              << "Aborting program!" << endl;
-
 
         exit(1);
     }
 
     first = clock() - start;
 
-    cout << "Time: " << (double) first / CLOCKS_PER_SEC << " s." << endl << endl;
-
-    cout << "\n\n- - - - - - - - \n\n";
+    cout << "Time: " << (double)first / CLOCKS_PER_SEC << " s." << endl << endl;
 
     cout << "Test for remove() and find():" << endl;
 
-    if (!set_test.remove_find_test(5))
+    if (!set_test.remove_find_test(2'000'000))
         cout << "Test passed!" << endl;
-    else {
+    else
+    {
         cout << "Something's wrong!" << endl
              << "Aborting program!" << endl;
 
@@ -47,9 +45,7 @@ int main() {
 
     second = clock() - first;
 
-    cout << "Time: " << (double) second / CLOCKS_PER_SEC << " s." << endl << endl;
+    cout << "Time: " << (double)second / CLOCKS_PER_SEC << " s." << endl << endl;
 
     return 0;
 }
-
-*/

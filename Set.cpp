@@ -24,13 +24,13 @@ Set::SetIterator::~SetIterator() {
 // Неявно возвращает размер данных.
 // Если итератор показывает за пределы контейнера (например, удален последний элемент), возвращает NULL.
 void *Set::SetIterator::getElement(size_t &size) {
-    cout << "listIter: " << listIter << '\n';
+//    cout << "listIter: " << listIter << '\n';
     if (listIter == nullptr) {
         size = 0;
         return nullptr;
     }
     void *elem = listIter->getElement(size);
-    cout << "elem: " << elem << '\n';
+//    cout << "elem: " << elem << '\n';
     return elem;
 }
 
@@ -61,7 +61,7 @@ bool Set::SetIterator::hasNext() {
 
 
 void Set::SetIterator::goToNext() {
-    cout << "listIter->hasNext(): " << listIter->hasNext() << '\n';
+//    cout << "listIter->hasNext(): " << listIter->hasNext() << '\n';
     if (listIter->hasNext()) {
         listIter->goToNext();
     }
@@ -75,12 +75,12 @@ void Set::SetIterator::goToNext() {
 }
 
 bool Set::SetIterator::equals(Container::Iterator *right) {
-    cout << "listIter: " << listIter << endl;
-    cout << "right: " << right << endl;
+//    cout << "listIter: " << listIter << endl;
+//    cout << "right: " << right << endl;
     if (listIter == nullptr || right == nullptr) {
         return false;
     }
-    cout << "listIter->equals(right): " << listIter->equals(right) << endl;
+//    cout << "listIter->equals(right): " << listIter->equals(right) << endl;
     return listIter->equals(right);
 }
 
@@ -112,42 +112,42 @@ size_t Set::max_bytes() {
 
 Container::Iterator *Set::find(void *elem, size_t elemSize) {
     size_t index = hash_function(elem, elemSize);
-    cout << "index: " << index << '\n';
+//    cout << "index: " << index << '\n';
     List *list = arr[index];
-    cout << "list: " << list << '\n';
-    cout << "empty(): " << list->empty() << '\n';
+//    cout << "list: " << list << '\n';
+//    cout << "empty(): " << list->empty() << '\n';
     if (list == nullptr || list->empty()) //didn't exist
     {
-        cout << "if: 1" << '\n';
+//        cout << "if: 1" << '\n';
         return nullptr;
     }
 
     Container::Iterator *listIter = list->find(elem, elemSize);
-    cout << "listIter: " << listIter << '\n';
+//    cout << "listIter: " << listIter << '\n';
     if (listIter == nullptr) //no matches
     {
         return nullptr;
     }
     auto a = new SetIterator(this, index, dynamic_cast<List::ListIterator *>(listIter));
-    cout << "a: " << a << '\n';
+//    cout << "a: " << a << '\n';
     return a;
 }
 
-Set::SetIterator * Set::newIterator() {
+Set::SetIterator *Set::newIterator() {
     auto tmp = new SetIterator(this, 0, nullptr);
-    cout << "tmp: " << tmp << '\n';
+//    cout << "tmp: " << tmp << '\n';
     return tmp;
 }
 
 void Set::remove(Container::Iterator *iter) {
-    cout << "iter: " << iter << endl;
+//    cout << "iter: " << iter << endl;
     if (iter == nullptr) {
         return;
     }
 
     auto setIter = dynamic_cast<SetIterator *>(iter);
     List *list = arr[setIter->index];
-    cout << "list: " << list << endl;
+//    cout << "list: " << list << endl;
     if (list == nullptr || list->empty()) //didn't exist
     {
         return;
@@ -213,7 +213,7 @@ Container::Iterator* Set::end()
 // В случае успешного добавления функция возвращает значение 0, в случае неудачи 1.
 int Set::insert(void *elem, size_t elemSize) {
     size_t index = hash_function(elem, elemSize);
-    cout << "index: " << index << '\n';
+//    cout << "index: " << index << '\n';
     if (arr[index] == nullptr) //for the first elem of the list
     {
         arr[index] = new List(_memory); // чуть не понятно зачем это делать
@@ -230,7 +230,7 @@ int Set::insert(void *elem, size_t elemSize) {
 //          return 2; //sth is wrong with push_front
 
         sizeOfSet++;
-        cout << "sizeofSet: " << sizeOfSet << '\n';
+//        cout << "sizeofSet: " << sizeOfSet << '\n';
         delete iter;
         return 0; //inserted
     }

@@ -18,8 +18,8 @@ void *List::ListIterator::getElement(size_t &size) {
 
 bool List::ListIterator::hasNext() {
     bool tmp = false;
-    cout << "current: " << current << endl;
-    cout << "current->next: " << current->next << endl;
+//    cout << "current: " << current << endl;
+//    cout << "current->next: " << current->next << endl;
     if (current != nullptr && current->next != nullptr) {
         tmp = true;
     }
@@ -30,7 +30,7 @@ bool List::ListIterator::hasNext() {
 // Переход к следующему элементу.
 
 void List::ListIterator::goToNext() {
-    cout << "current: " << current << '\n';
+//    cout << "current: " << current << '\n';
     if (current == nullptr) {
         return;
     }
@@ -42,9 +42,9 @@ void List::ListIterator::goToNext() {
 
 bool List::ListIterator::equals(Container::Iterator *right) {
     bool tmp = false;
-    cout << "current: " << current << '\n';
+//    cout << "current: " << current << '\n';
     auto a = ((ListIterator *) (right))->current;
-    cout << "a: " << a << '\n';
+//    cout << "a: " << a << '\n';
     if (current == ((ListIterator *) (right))->current) {
         tmp = true;
     }
@@ -62,21 +62,21 @@ bool List::ListIterator::equals(Container::Iterator *right) {
 int List::push_front(void *elem, size_t elemSize) {
     Node *new_front = new(_memory.allocMem(sizeof(Node)))Node(root, elem, elemSize);
     root = new_front;
-    cout << "root: " << root << '\n';
+//    cout << "root: " << root << '\n';
     counter_node++;
-    cout << "counter_node: " << counter_node << '\n'; // Shuhrat push front надо изменить
+//    cout << "counter_node: " << counter_node << '\n'; // Shuhrat push front надо изменить
     return 0;
 }
 
 // Удаление элемента из начала контейнера.
 
 void List::pop_front() {
-    cout << "root: " << root << endl;
+//    cout << "root: " << root << endl;
     if (root == nullptr) {
         return;
     }
 
-    Node * tmp_node = root;
+    Node *tmp_node = root;
     root = root->next;
     _memory.freeMem(tmp_node);
     counter_node--;
@@ -100,8 +100,8 @@ int List::insert(AbstractList::Iterator *iter, void *elem, size_t elemSize) {
     Node *new_node = new(_memory.allocMem(sizeof(Node)))Node(nullptr, elem, elemSize);
 
     Node *tmp_node;
-    cout << "iterator->current: " << iterator->current << '\n';
-    cout << "root: " << root << '\n';
+//    cout << "iterator->current: " << iterator->current << '\n';
+//    cout << "root: " << root << '\n';
     if (iterator->current == root) {
         tmp_node = root->next;
         root->next = new_node;
@@ -164,18 +164,18 @@ List::Iterator *List::find(void *elem, size_t size) {
 
     ListIterator *tmp_iterator = (ListIterator *) newIterator();
     tmp_iterator->current = root;
-    cout << "tmp_iterator-<current: " << tmp_iterator->current << '\n';
+//    cout << "tmp_iterator-<current: " << tmp_iterator->current << '\n';
 
     while (tmp_iterator->current != nullptr) {
-        cout << "1" << '\n';
+//        cout << "1" << '\n';
         if (size == tmp_iterator->current->size_node && tmp_iterator->current->value == elem) {
-            cout << "2" << '\n';
+//            cout << "2" << '\n';
             return tmp_iterator;
         }
 
         tmp_iterator->goToNext();
     }
-    cout << "nullptr:" << '\n';
+//    cout << "nullptr:" << '\n';
     return nullptr;
 }
 
@@ -185,8 +185,8 @@ List::Iterator *List::find(void *elem, size_t size) {
 
 List::Iterator *List::newIterator() {
     ListIterator *iterator = new ListIterator();
-    cout << "iterator: " << iterator << '\n';
-    cout << "root: " << root << '\n';
+//    cout << "iterator: " << iterator << '\n';
+//    cout << "root: " << root << '\n';
     iterator->current = root;
     return iterator;
 }
@@ -196,8 +196,8 @@ List::Iterator *List::newIterator() {
 
 void List::remove(Container::Iterator *iter) {
     ListIterator *iterator = (ListIterator *) iter;
-    cout << "iterator->current: " << iterator->current << '\n';
-    cout << "root: " << root << '\n';
+//    cout << "iterator->current: " << iterator->current << '\n';
+//    cout << "root: " << root << '\n';
     if (iterator->current == root) {
         iterator->goToNext();
         pop_front();
@@ -248,7 +248,7 @@ bool List::empty() {
 void List::print() {
     ListIterator *it = (ListIterator *) (newIterator());
     for (int i = 0; i < size(); ++i) {
-        cout << "Element " << i + 1 << ":" << endl;
+//        cout << "Element " << i + 1 << ":" << endl;
         //for (int j = 0; j < it->current->size_node; ++j)
         int *tmp = (int *) it->current->value;
         cout << *(tmp) << endl;
