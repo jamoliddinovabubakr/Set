@@ -1,0 +1,3 @@
+A:/ClionProjects/MyVector/cmake-build-debug/CMakeFiles/MyVector.dir
+A:/ClionProjects/MyVector/cmake-build-debug/CMakeFiles/edit_cache.dir
+A:/ClionProjects/MyVector/cmake-build-debug/CMakeFiles/rebuild_cache.dir
